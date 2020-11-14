@@ -13,6 +13,17 @@
             <Entry Text="{Binding Email}" HorizontalOptions="FillAndExpand"></Entry>
             <Entry Text="{Binding Password}" IsPassword="True" HorizontalOptions="FillAndExpand"></Entry>
             <Button Text="Guardar" BackgroundColor="LightSkyBlue" TextColor="White" HorizontalOptions="FillAndExpand" Command="{Binding LoginCommand}" ></Button>
+            <Label x:Name="LblCrearUsuario" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="Crear Usuario">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CrearUsuarioCommand}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label  HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="Lista Ejemplo">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ListaEjemploCommand}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

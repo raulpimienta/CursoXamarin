@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CursoXamarin.Pages.ListaCiudadesPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding ListCiudades}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" SelectedItem="{Binding SelectedCiudad, Mode=TwoWay}" SelectionMode="Single" >
+                <ListView.Header>
+                    <Grid BackgroundColor="Blue" Padding="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="5*" />
+                        </Grid.ColumnDefinitions>
+                        <Label TextColor="White" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="Ciudad" Grid.Column="0"></Label>
+                        <Label TextColor="White" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="Estado" Grid.Column="1"></Label>
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*" />
+                                    <ColumnDefinition Width="5*" />
+                                </Grid.ColumnDefinitions>
+                                <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Text="{Binding NombreCiudad}" Grid.Column="0"></Label>
+                                <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Text="{Binding Estado}" Grid.Column="1"></Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

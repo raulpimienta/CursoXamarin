@@ -65,6 +65,74 @@ namespace CursoXamarin.PageModels
             }
         }
 
+        DateTime _fechaNacimiento;
+        public DateTime FechaNacimiento
+        {
+            get { return _fechaNacimiento; }
+            set
+            {
+                _fechaNacimiento = value;
+                RaisePropertyChanged("FechaNacimiento");
+            }
+        }
+
+        bool _isCheckedPuedeViajar;
+        public bool IsCheckedPuedeViajar
+        {
+            get { return _isCheckedPuedeViajar; }
+            set
+            {
+                _isCheckedPuedeViajar = value;
+                RaisePropertyChanged("IsCheckedPuedeViajar");
+            }
+        }
+
+        bool _isToggledTieneCarro;
+        public bool IsToggledTieneCarro
+        {
+            get { return _isToggledTieneCarro; }
+            set
+            {
+                _isToggledTieneCarro = value;
+                RaisePropertyChanged("IsToggledTieneCarro");
+            }
+        }
+
+        bool _isCheckedRed;
+        public bool IsCheckedRed
+        {
+            get { return _isCheckedRed; }
+            set
+            {
+                _isCheckedRed = value;
+                RaisePropertyChanged("IsCheckedRed");
+            }
+        }
+
+        bool _isCheckedBlue;
+        public bool IsCheckedBlue
+        {
+            get { return _isCheckedBlue; }
+            set
+            {
+                _isCheckedBlue = value;
+                RaisePropertyChanged("IsCheckedBlue");
+            }
+        }
+
+        bool _isCheckedGreen;
+        public bool IsCheckedGreen
+        {
+            get { return _isCheckedGreen; }
+            set
+            {
+                _isCheckedGreen = value;
+                RaisePropertyChanged("IsCheckedGreen");
+            }
+        }
+
+
+
         public override void Init(object initData)
         {
             base.Init(initData);
@@ -81,6 +149,12 @@ namespace CursoXamarin.PageModels
             listEstado.Add(new Estado { NombreEstado = "Chihuahua",  Id = 1 });
 
             ListEstados = listEstado.ToList();
+
+            FechaNacimiento = DateTime.Now;
+
+            IsCheckedPuedeViajar = true;
+
+            IsToggledTieneCarro = false;
         }
     }
 }

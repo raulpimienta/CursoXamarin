@@ -4,20 +4,60 @@
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              xmlns:iOSSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
-             x:Class="CursoXamarin.Pages.CrearUsuarioPage">
+             x:Class="CursoXamarin.Pages.CrearUsuarioPage"
+             Title="Crear Usuario">
     <ContentPage.Content>
-        <StackLayout>
-            <inputLayout:SfTextInputLayout Hint="Nombre">
-                <Entry Text="{Binding Nombre}" ></Entry>
-            </inputLayout:SfTextInputLayout>
+        <ScrollView>
+            <StackLayout Padding="20">
+                <inputLayout:SfTextInputLayout Hint="Nombre" ContainerBackgroundColor="Transparent">
+                    <Entry Text="{Binding Nombre}" ></Entry>
+                </inputLayout:SfTextInputLayout>
 
-            <inputLayout:SfTextInputLayout Hint="Ciudad">
-                <Picker ItemsSource="{Binding ListCiudades}" SelectedItem="{Binding SelectedCiudad}" ItemDisplayBinding="{Binding NombreCiudad}" iOSSpecific:Picker.UpdateMode="WhenFinished" ></Picker>
-            </inputLayout:SfTextInputLayout>
+                <inputLayout:SfTextInputLayout Hint="Ciudad" ContainerBackgroundColor="Transparent">
+                    <Picker ItemsSource="{Binding ListCiudades}" SelectedItem="{Binding SelectedCiudad}" ItemDisplayBinding="{Binding NombreCiudad}" iOSSpecific:Picker.UpdateMode="WhenFinished" ></Picker>
+                </inputLayout:SfTextInputLayout>
 
-            <inputLayout:SfTextInputLayout Hint="Estado">
-                <autocomplete:SfAutoComplete DataSource="{Binding ListEstados}" SelectedItem="{Binding SelectedEstado}" DisplayMemberPath="NombreEstado"  SuggestionMode="Contains" ></autocomplete:SfAutoComplete>
-            </inputLayout:SfTextInputLayout>
-        </StackLayout>
+                <inputLayout:SfTextInputLayout Hint="Estado" ContainerBackgroundColor="Transparent">
+                    <autocomplete:SfAutoComplete DataSource="{Binding ListEstados}" SelectedItem="{Binding SelectedEstado}" DisplayMemberPath="NombreEstado"  SuggestionMode="Contains" ></autocomplete:SfAutoComplete>
+                </inputLayout:SfTextInputLayout>
+
+                <inputLayout:SfTextInputLayout Hint="Fecha de Nacimiento" ContainerBackgroundColor="Transparent">
+                    <DatePicker Date="{Binding FechaNacimiento}" ></DatePicker>
+                </inputLayout:SfTextInputLayout>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="¿Puede Viajar?" Grid.Column="0" ></Label>
+                    <CheckBox HorizontalOptions="StartAndExpand" IsChecked="{Binding IsCheckedPuedeViajar}" Grid.Column="1"></CheckBox>
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="¿Tiene Carro?" Grid.Column="0"></Label>
+                    <Switch HorizontalOptions="StartAndExpand" IsToggled="{Binding IsToggledTieneCarro}" Grid.Column="1"></Switch>
+                </Grid>
+
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Text="Seleccione su color favorito" Grid.Row="0"></Label>
+                    <RadioButton IsChecked="{Binding IsCheckedRed}" TextColor="Red" Text="Rojo" Grid.Row="1"></RadioButton>
+                    <RadioButton IsChecked="{Binding IsCheckedBlue}" TextColor="Blue"  Text="Azul" Grid.Row="2"></RadioButton>
+                    <RadioButton IsChecked="{Binding IsCheckedGreen}" TextColor="Green"  Text="Verde" Grid.Row="3"></RadioButton>
+                </Grid>
+                
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

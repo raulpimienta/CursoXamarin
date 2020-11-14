@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CursoXamarin.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -72,6 +73,39 @@ namespace CursoXamarin.PageModels
                 });
             }
         }
+
+        public Command CrearUsuarioCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+
+
+                    await CoreMethods.PushPageModel<CrearUsuarioPageModel>();
+
+                });
+            }
+        }
+
+        public Command ListaEjemploCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    var listCiudad = new List<Ciudad>();
+                    listCiudad.Add(new Ciudad { Estado = "Sonora", NombreCiudad = "Obregon", Id = 0 });
+                    listCiudad.Add(new Ciudad { Estado = "Sonora", NombreCiudad = "Hermosillo", Id = 1 });
+                    listCiudad.Add(new Ciudad { Estado = "Sonora", NombreCiudad = "Guaymas", Id = 2 });
+
+                    await CoreMethods.PushPageModel<ListaCiudadesPageModel>(listCiudad);
+
+                });
+            }
+        }
+        
+
 
         #endregion
 
