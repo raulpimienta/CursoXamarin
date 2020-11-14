@@ -16,7 +16,7 @@
             </inputLayout:SfTextInputLayout>
 
             <inputLayout:SfTextInputLayout Hint="Estado">
-                <autocomplete:SfAutoComplete ItemsSource="{Binding ListEstados}" SelectedItem="{Binding SelectedEstado}" DisplayMemberPath="NombreEstado"  SuggestionMode="Contains" ></autocomplete:SfAutoComplete>
+                <autocomplete:SfAutoComplete DataSource="{Binding ListEstados}" SelectedItem="{Binding SelectedEstado}" DisplayMemberPath="NombreEstado"  SuggestionMode="Contains" ></autocomplete:SfAutoComplete>
             </inputLayout:SfTextInputLayout>
         </StackLayout>
     </ContentPage.Content>
