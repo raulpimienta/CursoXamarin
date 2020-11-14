@@ -12,7 +12,7 @@
                 HorizontalOptions="CenterAndExpand" />
             <Entry Text="{Binding Email}" HorizontalOptions="FillAndExpand"></Entry>
             <Entry Text="{Binding Password}" IsPassword="True" HorizontalOptions="FillAndExpand"></Entry>
-            <Button Text="Guardar" BackgroundColor="LightSkyBlue" TextColor="White" HorizontalOptions="FillAndExpand" Command="{Binding GuardarCommand}" ></Button>
+            <Button Text="Guardar" BackgroundColor="LightSkyBlue" TextColor="White" HorizontalOptions="FillAndExpand" Command="{Binding LoginCommand}" ></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

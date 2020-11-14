@@ -55,17 +55,20 @@ namespace CursoXamarin.PageModels
 
         #region COMMANDS
 
-        public Command GuardarCommand
+        public Command LoginCommand
         {
             get
             {
                 return new Command(async () =>
                 {
 
-                    var mensaje = "";
-                    if(Email == "admin" && Password == "123") { mensaje = "Bienvenido"; } else { mensaje = "Email o Password incorrectos"; } 
+                    //var mensaje = "";
+                    //if(Email == "admin" && Password == "123") { mensaje = "Bienvenido"; } else { mensaje = "Email o Password incorrectos"; } 
 
-                    await CoreMethods.DisplayAlert("Mensaje", mensaje, "Ok");
+                    //await CoreMethods.DisplayAlert("Mensaje", mensaje, "Ok");
+
+                    await CoreMethods.PushPageModel<CrearUsuarioPageModel>();
+
                 });
             }
         }

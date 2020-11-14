@@ -12,8 +12,11 @@ namespace CursoXamarin
         {
             InitializeComponent();
 
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjU1NDQyQDMxMzgyZTMxMmUzMENsR3ZESHA5d2NlZ0FiaThsK25iV2c1b3BJc3BQWm01RTB2SWhHajkwbFk9");
+
+
             var login = FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
-            var basicContainer =new FreshNavigationContainer(login);
+            var basicContainer = new FreshNavigationContainer(login);
 
             MainPage = basicContainer;
         }

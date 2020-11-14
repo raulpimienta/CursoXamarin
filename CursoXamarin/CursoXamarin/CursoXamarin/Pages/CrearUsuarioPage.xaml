@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:iOSSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+             x:Class="CursoXamarin.Pages.CrearUsuarioPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <inputLayout:SfTextInputLayout Hint="Nombre">
+                <Entry Text="{Binding Nombre}" ></Entry>
+            </inputLayout:SfTextInputLayout>
+
+            <inputLayout:SfTextInputLayout Hint="Ciudad">
+                <Picker ItemsSource="{Binding ListCiudades}" SelectedItem="{Binding SelectedCiudad}" ItemDisplayBinding="{Binding NombreCiudad}" iOSSpecific:Picker.UpdateMode="WhenFinished" ></Picker>
+            </inputLayout:SfTextInputLayout>
+
+            <inputLayout:SfTextInputLayout Hint="Estado">
+                <autocomplete:SfAutoComplete ItemsSource="{Binding ListEstados}" SelectedItem="{Binding SelectedEstado}" DisplayMemberPath="NombreEstado"  SuggestionMode="Contains" ></autocomplete:SfAutoComplete>
+            </inputLayout:SfTextInputLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
