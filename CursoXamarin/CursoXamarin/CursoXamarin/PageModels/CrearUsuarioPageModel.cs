@@ -1,9 +1,10 @@
-﻿using CursoXamarin.Models;
+﻿using Acr.UserDialogs;
+using CursoXamarin.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace CursoXamarin.PageModels
@@ -17,8 +18,25 @@ namespace CursoXamarin.PageModels
             set
             {
                 _nombre = value;
+                IsValidNombre(value);
                 RaisePropertyChanged("Nombre");
             }
+        }
+
+        bool _nombreHasError;
+        public bool NombreHasError
+        {
+            get { return _nombreHasError; }
+            set
+            {
+                _nombreHasError = value;
+                RaisePropertyChanged("NombreHasError");
+            }
+        }
+
+        public void IsValidNombre(string newValue)
+        {
+            NombreHasError = String.IsNullOrEmpty(newValue);
         }
 
         List<Ciudad> _listCiudades;
@@ -131,9 +149,20 @@ namespace CursoXamarin.PageModels
             }
         }
 
+        bool _isLoading;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set
+            {
+                _isLoading = value;
+                RaisePropertyChanged("IsLoading");
+            }
+        }
 
+        
 
-        public override void Init(object initData)
+        public async override void Init(object initData)
         {
             base.Init(initData);
 
@@ -146,7 +175,7 @@ namespace CursoXamarin.PageModels
 
             var listEstado = new List<Estado>();
             listEstado.Add(new Estado { NombreEstado = "Sonora", Id = 0 });
-            listEstado.Add(new Estado { NombreEstado = "Chihuahua",  Id = 1 });
+            listEstado.Add(new Estado { NombreEstado = "Chihuahua", Id = 1 });
 
             ListEstados = listEstado.ToList();
 
@@ -155,6 +184,33 @@ namespace CursoXamarin.PageModels
             IsCheckedPuedeViajar = true;
 
             IsToggledTieneCarro = false;
+
+            IsLoading = true;
+
+            await Task.Delay(TimeSpan.FromSeconds(5));
+
+            IsLoading = false;
+
         }
+
+        public Command CrearUsuarioCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    IsValidNombre(Nombre);
+
+                    if (NombreHasError) { return; }
+
+                    using (PageDialog.Loading("Cargando...", null, null, true, MaskType.Black))
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(5));
+                    }
+
+                });
+            }
+        }
+
     }
 }

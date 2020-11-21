@@ -9,7 +9,8 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="20">
-                <inputLayout:SfTextInputLayout Hint="Nombre" ContainerBackgroundColor="Transparent">
+                <ActivityIndicator IsVisible="{Binding IsLoading}" IsRunning="{Binding IsLoading}"></ActivityIndicator>
+                <inputLayout:SfTextInputLayout Hint="Nombre" ContainerBackgroundColor="Transparent" ErrorColor="Red" ErrorText="El nombre es requerido." HasError="{Binding NombreHasError}">
                     <Entry Text="{Binding Nombre}" ></Entry>
                 </inputLayout:SfTextInputLayout>
 
@@ -55,7 +56,8 @@
                     <RadioButton IsChecked="{Binding IsCheckedBlue}" TextColor="Blue"  Text="Azul" Grid.Row="2"></RadioButton>
                     <RadioButton IsChecked="{Binding IsCheckedGreen}" TextColor="Green"  Text="Verde" Grid.Row="3"></RadioButton>
                 </Grid>
-                
+
+                <Button Text="Crear" CornerRadius="20" BackgroundColor="LightSkyBlue" TextColor="White" HorizontalOptions="FillAndExpand" Command="{Binding CrearUsuarioCommand}" ></Button>
 
             </StackLayout>
         </ScrollView>

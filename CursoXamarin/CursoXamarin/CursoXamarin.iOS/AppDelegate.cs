@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Syncfusion.XForms.iOS.TextInputLayout;
 using UIKit;
 
 namespace CursoXamarin.iOS
@@ -22,6 +23,10 @@ namespace CursoXamarin.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+
+            SfTextInputLayoutRenderer.Init();
+            new Syncfusion.SfAutoComplete.XForms.iOS.SfAutoCompleteRenderer();
+            global::Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental");
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
