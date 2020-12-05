@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using CursoXamarin.Models;
+using Plugin.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -160,6 +161,17 @@ namespace CursoXamarin.PageModels
             }
         }
 
+        ImageSource _imageSourceUsuario;
+        public ImageSource ImageSourceUsuario
+        {
+            get { return _imageSourceUsuario; }
+            set
+            {
+                _imageSourceUsuario = value;
+                RaisePropertyChanged("ImageSourceUsuario");
+            }
+        }
+
         
 
         public async override void Init(object initData)
@@ -211,6 +223,91 @@ namespace CursoXamarin.PageModels
                 });
             }
         }
+
+        public Command TomarPhotoCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+
+                    string action = await CoreMethods.DisplayActionSheet("Seleccione una opción", "Cancelar", null, "Tomar Foto", "Seleccionar Foto");
+
+                    if(action == "Cancelar") { return; }
+
+                    switch (action)
+                    {
+                        case "Tomar Foto":
+
+                            try
+                            {
+                                if (!CrossMedia.Current.IsTakePhotoSupported)
+                                {
+                                    await CoreMethods.DisplayAlert("Error","No cuenta con una version compatible para tomar o seleccionar fotos","OK");
+                                    return;
+                                }
+
+                                var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                                {
+                                     PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium
+                                });
+
+                                if(file != null)
+                                {
+                                    ImageSourceUsuario = ImageSource.FromStream(() =>
+                                    {
+                                        var stream = file.GetStream();
+                                        file.Dispose();
+                                        return stream;
+                                    });
+                                }
+
+                            }
+                            catch (Exception)
+                            {
+                            }
+
+                            break;
+
+                        case "Seleccionar Foto":
+
+                            try
+                            {
+                                if (!CrossMedia.Current.IsPickPhotoSupported)
+                                {
+                                    await CoreMethods.DisplayAlert("Error", "No cuenta con una version compatible para tomar o seleccionar fotos", "OK");
+                                    return;
+                                }
+
+                                var file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                                {
+                                    PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium
+                                });
+
+                                if (file != null)
+                                {
+                                    ImageSourceUsuario = ImageSource.FromStream(() =>
+                                    {
+                                        var stream = file.GetStream();
+                                        file.Dispose();
+                                        return stream;
+                                    });
+                                }
+
+                            }
+                            catch (Exception)
+                            {
+                            }
+
+                            break;
+                    }
+
+                });
+            }
+        }
+
+
+        
 
     }
 }
